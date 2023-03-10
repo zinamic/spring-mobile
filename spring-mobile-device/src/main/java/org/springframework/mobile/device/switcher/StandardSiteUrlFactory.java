@@ -16,7 +16,7 @@
 
 package org.springframework.mobile.device.switcher;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * Site URL factory implementation that differentiates each site by the value of the server name field.

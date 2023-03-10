@@ -16,7 +16,7 @@
 
 package org.springframework.mobile.device;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * Service interface for resolving Devices that originate web requests with the application.

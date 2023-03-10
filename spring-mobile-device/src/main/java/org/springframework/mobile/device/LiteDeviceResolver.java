@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * A "lightweight" device resolver algorithm based on Wordpress's Mobile pack. Detects the

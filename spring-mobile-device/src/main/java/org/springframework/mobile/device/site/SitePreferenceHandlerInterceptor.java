@@ -16,10 +16,10 @@
 
 package org.springframework.mobile.device.site;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.servlet.HandlerInterceptor;
 
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * A Spring MVC interceptor that, on preHandle, delegates to a {@link SitePreferenceHandler} to resolve the SitePreference of the user that originated the web request.
@@ -31,7 +31,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  * 
  * @author Keith Donald
  */
-public class SitePreferenceHandlerInterceptor extends HandlerInterceptorAdapter {
+public class SitePreferenceHandlerInterceptor implements HandlerInterceptor {
 
 	private final SitePreferenceHandler sitePreferenceHandler;
 	

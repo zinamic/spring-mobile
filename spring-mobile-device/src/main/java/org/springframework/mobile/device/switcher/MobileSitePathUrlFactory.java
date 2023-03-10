@@ -16,7 +16,7 @@
 
 package org.springframework.mobile.device.switcher;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * Path based site URL factory implementation that handles requests for the "mobile" site.

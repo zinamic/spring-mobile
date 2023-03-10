@@ -16,7 +16,7 @@
 
 package org.springframework.mobile.device.annotation;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.Nullable;

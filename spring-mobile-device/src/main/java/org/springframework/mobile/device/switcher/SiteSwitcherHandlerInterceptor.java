@@ -16,12 +16,12 @@
 
 package org.springframework.mobile.device.switcher;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.mobile.device.site.CookieSitePreferenceRepository;
 import org.springframework.mobile.device.site.SitePreferenceHandler;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.HandlerInterceptor;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * A Spring MVC interceptor that switches the user between the mobile, normal, and tablet sites by employing a specific 
@@ -57,7 +57,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  * @author Scott Rossillo
  * @author Roy Clarkson
  */
-public class SiteSwitcherHandlerInterceptor extends HandlerInterceptorAdapter {
+public class SiteSwitcherHandlerInterceptor implements HandlerInterceptor {
 
 	private final SiteSwitcherHandler siteSwitcherHandler;
 

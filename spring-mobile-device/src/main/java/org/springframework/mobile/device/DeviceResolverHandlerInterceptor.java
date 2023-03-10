@@ -16,11 +16,10 @@
 
 package org.springframework.mobile.device;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * A Spring MVC interceptor that resolves the Device that originated the web request <i>before</i> any request handler is invoked.
@@ -28,7 +27,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  * Request handlers such as @Controllers and views may then access the currentDevice to vary their control and rendering logic, respectively.
  * @author Keith Donald
  */
-public class DeviceResolverHandlerInterceptor extends HandlerInterceptorAdapter {
+public class DeviceResolverHandlerInterceptor implements HandlerInterceptor {
 
 	private final DeviceResolver deviceResolver;
 

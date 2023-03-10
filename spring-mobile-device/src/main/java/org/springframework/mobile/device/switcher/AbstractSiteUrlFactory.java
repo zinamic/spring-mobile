@@ -16,7 +16,7 @@
 
 package org.springframework.mobile.device.switcher;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * Abstract implementation of the {@link SiteUrlFactory} interface.

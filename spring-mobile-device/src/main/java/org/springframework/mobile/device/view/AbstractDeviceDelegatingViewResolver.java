@@ -18,7 +18,7 @@ package org.springframework.mobile.device.view;
 
 import java.util.Locale;
 
-import javax.servlet.ServletContext;
+import jakarta.servlet.ServletContext;
 
 import org.springframework.core.Ordered;
 import org.springframework.util.Assert;
