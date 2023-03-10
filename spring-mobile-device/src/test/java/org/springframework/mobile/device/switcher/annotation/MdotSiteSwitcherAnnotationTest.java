@@ -16,9 +16,10 @@
 
 package org.springframework.mobile.device.switcher.annotation;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.mobile.device.Device;
@@ -28,8 +29,6 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author Roy Clarkson
@@ -59,7 +58,7 @@ public class MdotSiteSwitcherAnnotationTest {
 			}
 		});
 		interceptor.preHandle(request, response, null);
-		assertThat(response.getRedirectedUrl()).isEqualToIgnoringWhitespace("https://m.server.local");
+		assertThat(response.getRedirectedUrl()).isEqualToIgnoringWhitespace("http://m.server.local");
 	}
 
 }

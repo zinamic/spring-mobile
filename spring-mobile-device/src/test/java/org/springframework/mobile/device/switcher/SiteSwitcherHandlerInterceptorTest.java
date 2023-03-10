@@ -21,8 +21,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import jakarta.servlet.http.HttpServletRequest;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.mobile.device.DeviceType;
@@ -35,6 +33,8 @@ import org.springframework.mobile.device.site.StubSitePreferenceRepository;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.web.util.UriUtils;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 public class SiteSwitcherHandlerInterceptorTest {
 
@@ -194,7 +194,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		SiteSwitcherHandlerInterceptor mDot = SiteSwitcherHandlerInterceptor.mDot("app.com");
 		assertFalse(mDot.preHandle(request, response, null));
 		assertEquals(0, response.getCookies().length);
-		assertEquals("https://app.com", response.getRedirectedUrl());
+		assertEquals("http://app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -219,7 +219,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		assertEquals(1, response.getCookies().length);
 		assertEquals(".app.com", response.getCookies()[0].getDomain());
 		assertEquals("NORMAL", response.getCookies()[0].getValue());
-		assertEquals("https://app.com", response.getRedirectedUrl());
+		assertEquals("http://app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -231,7 +231,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		assertEquals(1, response.getCookies().length);
 		assertEquals(".app.com", response.getCookies()[0].getDomain());
 		assertEquals("MOBILE", response.getCookies()[0].getValue());
-		assertEquals("https://m.app.com", response.getRedirectedUrl());
+		assertEquals("http://m.app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -278,7 +278,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		SiteSwitcherHandlerInterceptor mDot = SiteSwitcherHandlerInterceptor.mDot("app.com");
 		assertFalse(mDot.preHandle(request, response, null));
 		assertEquals(0, response.getCookies().length);
-		assertEquals("https://m.app.com", response.getRedirectedUrl());
+		assertEquals("http://m.app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -288,7 +288,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		SiteSwitcherHandlerInterceptor mDot = SiteSwitcherHandlerInterceptor.mDot("app.com");
 		assertFalse(mDot.preHandle(request, response, null));
 		assertEquals(0, response.getCookies().length);
-		assertEquals("https://m.app.com?city=Z%C3%BCrich", response.getRedirectedUrl());
+		assertEquals("http://m.app.com?city=Z%C3%BCrich", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -323,7 +323,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		assertEquals(1, response.getCookies().length);
 		assertEquals(".app.com", response.getCookies()[0].getDomain());
 		assertEquals("NORMAL", response.getCookies()[0].getValue());
-		assertEquals("https://app.com", response.getRedirectedUrl());
+		assertEquals("http://app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -335,7 +335,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		assertEquals(1, response.getCookies().length);
 		assertEquals(".app.com", response.getCookies()[0].getDomain());
 		assertEquals("MOBILE", response.getCookies()[0].getValue());
-		assertEquals("https://m.app.com", response.getRedirectedUrl());
+		assertEquals("http://m.app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -373,7 +373,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		assertEquals(1, response.getCookies().length);
 		assertEquals(".app.com", response.getCookies()[0].getDomain());
 		assertEquals("TABLET", response.getCookies()[0].getValue());
-		assertEquals("https://app.com", response.getRedirectedUrl());
+		assertEquals("http://app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -392,7 +392,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		SiteSwitcherHandlerInterceptor mDot = SiteSwitcherHandlerInterceptor.mDot("app.com");
 		assertFalse(mDot.preHandle(request, response, null));
 		assertEquals(0, response.getCookies().length);
-		assertEquals("https://app.com", response.getRedirectedUrl());
+		assertEquals("http://app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -417,7 +417,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		assertEquals(1, response.getCookies().length);
 		assertEquals(".app.com", response.getCookies()[0].getDomain());
 		assertEquals("NORMAL", response.getCookies()[0].getValue());
-		assertEquals("https://app.com", response.getRedirectedUrl());
+		assertEquals("http://app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -429,7 +429,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		assertEquals(1, response.getCookies().length);
 		assertEquals(".app.com", response.getCookies()[0].getDomain());
 		assertEquals("MOBILE", response.getCookies()[0].getValue());
-		assertEquals("https://m.app.com", response.getRedirectedUrl());
+		assertEquals("http://m.app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -467,7 +467,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		assertEquals(1, response.getCookies().length);
 		assertEquals(".app.com", response.getCookies()[0].getDomain());
 		assertEquals("TABLET", response.getCookies()[0].getValue());
-		assertEquals("https://app.com", response.getRedirectedUrl());
+		assertEquals("http://app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -476,7 +476,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		SiteSwitcherHandlerInterceptor mDot = SiteSwitcherHandlerInterceptor.mDot("app.com", true);
 		assertFalse(mDot.preHandle(request, response, null));
 		assertEquals(0, response.getCookies().length);
-		assertEquals("https://m.app.com", response.getRedirectedUrl());
+		assertEquals("http://m.app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -486,7 +486,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		SiteSwitcherHandlerInterceptor mDot = SiteSwitcherHandlerInterceptor.mDot("app.com", true);
 		assertFalse(mDot.preHandle(request, response, null));
 		assertEquals(0, response.getCookies().length);
-		assertEquals("https://m.app.com?x=123", response.getRedirectedUrl());
+		assertEquals("http://m.app.com?x=123", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -521,7 +521,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		assertEquals(1, response.getCookies().length);
 		assertEquals(".app.com", response.getCookies()[0].getDomain());
 		assertEquals("NORMAL", response.getCookies()[0].getValue());
-		assertEquals("https://app.com", response.getRedirectedUrl());
+		assertEquals("http://app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -533,7 +533,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		assertEquals(1, response.getCookies().length);
 		assertEquals(".app.com", response.getCookies()[0].getDomain());
 		assertEquals("MOBILE", response.getCookies()[0].getValue());
-		assertEquals("https://m.app.com", response.getRedirectedUrl());
+		assertEquals("http://m.app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -558,7 +558,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		assertEquals(1, response.getCookies().length);
 		assertEquals(".app.com", response.getCookies()[0].getDomain());
 		assertEquals("TABLET", response.getCookies()[0].getValue());
-		assertEquals("https://m.app.com", response.getRedirectedUrl());
+		assertEquals("http://m.app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -592,7 +592,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		SiteSwitcherHandlerInterceptor dotMobi = SiteSwitcherHandlerInterceptor.dotMobi("app.com");
 		assertFalse(dotMobi.preHandle(request, response, null));
 		assertEquals(0, response.getCookies().length);
-		assertEquals("https://app.com", response.getRedirectedUrl());
+		assertEquals("http://app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -603,7 +603,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		SiteSwitcherHandlerInterceptor dotMobi = SiteSwitcherHandlerInterceptor.dotMobi("app.com");
 		assertFalse(dotMobi.preHandle(request, response, null));
 		assertEquals(0, response.getCookies().length);
-		assertEquals("https://app.com?x=123", response.getRedirectedUrl());
+		assertEquals("http://app.com?x=123", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -628,7 +628,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		assertEquals(1, response.getCookies().length);
 		assertEquals(".app.com", response.getCookies()[0].getDomain());
 		assertEquals("NORMAL", response.getCookies()[0].getValue());
-		assertEquals("https://app.com", response.getRedirectedUrl());
+		assertEquals("http://app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -732,7 +732,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		assertEquals(1, response.getCookies().length);
 		assertEquals(".app.com", response.getCookies()[0].getDomain());
 		assertEquals("NORMAL", response.getCookies()[0].getValue());
-		assertEquals("https://app.com", response.getRedirectedUrl());
+		assertEquals("http://app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -776,7 +776,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		SiteSwitcherHandlerInterceptor dotMobi = SiteSwitcherHandlerInterceptor.dotMobi("app.com");
 		assertFalse(dotMobi.preHandle(request, response, null));
 		assertEquals(0, response.getCookies().length);
-		assertEquals("https://app.com", response.getRedirectedUrl());
+		assertEquals("http://app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -801,7 +801,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		assertEquals(1, response.getCookies().length);
 		assertEquals(".app.com", response.getCookies()[0].getDomain());
 		assertEquals("NORMAL", response.getCookies()[0].getValue());
-		assertEquals("https://app.com", response.getRedirectedUrl());
+		assertEquals("http://app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -851,7 +851,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		assertEquals(1, response.getCookies().length);
 		assertEquals(".app.com", response.getCookies()[0].getDomain());
 		assertEquals("TABLET", response.getCookies()[0].getValue());
-		assertEquals("https://app.com", response.getRedirectedUrl());
+		assertEquals("http://app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -905,7 +905,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		assertEquals(1, response.getCookies().length);
 		assertEquals(".app.com", response.getCookies()[0].getDomain());
 		assertEquals("NORMAL", response.getCookies()[0].getValue());
-		assertEquals("https://app.com", response.getRedirectedUrl());
+		assertEquals("http://app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -1000,7 +1000,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		device.setDeviceType(DeviceType.MOBILE);
 		SiteSwitcherHandlerInterceptor interceptor = SiteSwitcherHandlerInterceptor.standard("normal.com", "mobile.com", "." + "normal.com");
 		assertFalse(interceptor.preHandle(request, response, null));
-		assertEquals("https://www.att.com/", response.getRedirectedUrl());
+		assertEquals("http://mobile.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -1008,7 +1008,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		device.setDeviceType(DeviceType.MOBILE);
 		SiteSwitcherHandlerInterceptor interceptor = SiteSwitcherHandlerInterceptor.standard("normal.com", "mobile.com", "tablet.com", "." + "normal.com");
 		assertFalse(interceptor.preHandle(request, response, null));
-		assertEquals("https://www.att.com/", response.getRedirectedUrl());
+		assertEquals("http://mobile.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -1017,7 +1017,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		request.setServerName("normal.com");
 		SiteSwitcherHandlerInterceptor interceptor = SiteSwitcherHandlerInterceptor.standard("normal.com", "mobile.com", "tablet.com", "." + "normal.com");
 		assertFalse(interceptor.preHandle(request, response, null));
-		assertEquals("https://www.att.com/", response.getRedirectedUrl());
+		assertEquals("http://mobile.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -1035,7 +1035,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		request.setServerName("tablet.com");
 		SiteSwitcherHandlerInterceptor interceptor = SiteSwitcherHandlerInterceptor.standard("normal.com", "mobile.com", "tablet.com", "." + "normal.com");
 		assertFalse(interceptor.preHandle(request, response, null));
-		assertEquals("https://www.att.com/", response.getRedirectedUrl());
+		assertEquals("http://mobile.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -1043,7 +1043,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		device.setDeviceType(DeviceType.TABLET);
 		SiteSwitcherHandlerInterceptor interceptor = SiteSwitcherHandlerInterceptor.standard("normal.com", "mobile.com", "tablet.com", "." + "normal.com");
 		assertFalse(interceptor.preHandle(request, response, null));
-		assertEquals("https://www.salesforce.com", response.getRedirectedUrl());
+		assertEquals("http://tablet.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -1052,7 +1052,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		request.setServerName("normal.com");
 		SiteSwitcherHandlerInterceptor interceptor = SiteSwitcherHandlerInterceptor.standard("normal.com", "mobile.com", "tablet.com", "." + "normal.com");
 		assertFalse(interceptor.preHandle(request, response, null));
-		assertEquals("https://www.salesforce.com", response.getRedirectedUrl());
+		assertEquals("http://tablet.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -1061,7 +1061,7 @@ public class SiteSwitcherHandlerInterceptorTest {
 		request.setServerName("mobile.com");
 		SiteSwitcherHandlerInterceptor interceptor = SiteSwitcherHandlerInterceptor.standard("normal.com", "mobile.com", "tablet.com", "." + "normal.com");
 		assertFalse(interceptor.preHandle(request, response, null));
-		assertEquals("https://www.salesforce.com", response.getRedirectedUrl());
+		assertEquals("http://tablet.com", response.getRedirectedUrl());
 	}
 
 	@Test

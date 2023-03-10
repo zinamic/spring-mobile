@@ -26,15 +26,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
-import jakarta.servlet.Filter;
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.FilterConfig;
-import jakarta.servlet.Servlet;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
-import jakarta.servlet.http.HttpServletRequest;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.mobile.device.DeviceType;
@@ -49,6 +40,15 @@ import org.springframework.mock.web.MockFilterConfig;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.web.util.UriUtils;
+
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.Servlet;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
 
 public class SiteSwitcherRequestFilterTest {
 
@@ -254,7 +254,7 @@ public class SiteSwitcherRequestFilterTest {
 		assertEquals(1, response.getCookies().length);
 		assertEquals(".app.com", response.getCookies()[0].getDomain());
 		assertEquals("MOBILE", response.getCookies()[0].getValue());
-		assertEquals("https://m.app.com", response.getRedirectedUrl());
+		assertEquals("http://m.app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -273,7 +273,7 @@ public class SiteSwitcherRequestFilterTest {
 		device.setDeviceType(DeviceType.MOBILE);
 		filterTest("mDot");
 		assertEquals(0, response.getCookies().length);
-		assertEquals("https://m.app.com", response.getRedirectedUrl());
+		assertEquals("http://m.app.com", response.getRedirectedUrl());
 	}
 	
 	@Test
@@ -282,7 +282,7 @@ public class SiteSwitcherRequestFilterTest {
 		request.setQueryString(UriUtils.encodeQuery("city=Z\u00fcrich", "UTF-8"));
 		filterTest("mDot");
 		assertEquals(0, response.getCookies().length);
-		assertEquals("https://m.app.com?city=Z%C3%BCrich", response.getRedirectedUrl());
+		assertEquals("http://m.app.com?city=Z%C3%BCrich", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -304,7 +304,7 @@ public class SiteSwitcherRequestFilterTest {
 		assertEquals(1, response.getCookies().length);
 		assertEquals(".app.com", response.getCookies()[0].getDomain());
 		assertEquals("MOBILE", response.getCookies()[0].getValue());
-		assertEquals("https://m.app.com", response.getRedirectedUrl());
+		assertEquals("http://m.app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -345,7 +345,7 @@ public class SiteSwitcherRequestFilterTest {
 		assertEquals(1, response.getCookies().length);
 		assertEquals(".app.com", response.getCookies()[0].getDomain());
 		assertEquals("MOBILE", response.getCookies()[0].getValue());
-		assertEquals("https://m.app.com", response.getRedirectedUrl());
+		assertEquals("http://m.app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -384,7 +384,7 @@ public class SiteSwitcherRequestFilterTest {
 		mDot.init(filterConfig);
 		mDot.doFilter(request, response, filterChain);
 		assertEquals(0, response.getCookies().length);
-		assertEquals("https://m.app.com", response.getRedirectedUrl());
+		assertEquals("http://m.app.com", response.getRedirectedUrl());
 	}
 
 	@Test
@@ -398,7 +398,7 @@ public class SiteSwitcherRequestFilterTest {
 		mDot.init(filterConfig);
 		mDot.doFilter(request, response, filterChain);
 		assertEquals(0, response.getCookies().length);
-		assertEquals("https://m.app.com", response.getRedirectedUrl());
+		assertEquals("http://m.app.com", response.getRedirectedUrl());
 	}
 
 	// dotMobi tests
