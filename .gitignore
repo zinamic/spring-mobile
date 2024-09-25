@@ -12,3 +12,5 @@ target
 bin
 .idea
 out
+/.flattened-pom.xml
+/*/.flattened-pom.xml
